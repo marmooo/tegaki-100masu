@@ -2,11 +2,6 @@ function loadConfig() {
   if (localStorage.getItem('darkMode') == 1) {
     document.documentElement.dataset.theme = 'dark';
   }
-  if (localStorage.getItem('bgm') == 1) {
-    var bgmButton = document.getElementById('bgmButton');
-    bgmButton.classList.remove('close');
-    bgmButton.dataset.enabled = 'true';
-  }
 }
 loadConfig();
 
@@ -17,21 +12,6 @@ function toggleDarkMode() {
   } else {
     localStorage.setItem('darkMode', 1);
     document.documentElement.dataset.theme = 'dark';
-  }
-}
-
-function toggleBGM(obj) {
-  const bgm = new Audio('mp3/correct3.mp3');
-  if (obj.dataset && obj.dataset.enabled == 'true') {
-    obj.classList.add('close');
-    obj.dataset.enabled = 'false';
-    localStorage.setItem('bgm', 0);
-    bgm.pause();
-  } else {
-    obj.classList.remove('close');
-    obj.dataset.enabled = 'true';
-    localStorage.setItem('bgm', 1);
-    bgm.play();
   }
 }
 
@@ -209,13 +189,11 @@ function initSignaturePad() {
       for (var i=0; i<data.length; i++) {
         count += data[i].length;
       }
-      if (5 < count && count < 50) {
+      if (5 < count && count < 100) {
         var reply = predict(this._canvas, data.length, count).join('');
         replyObj.innerText = reply;
         if (replyObj.dataset.answer == reply) {
-          if (localStorage.getItem('bgm') == 1) {
-            new Audio('mp3/correct3.mp3').play();
-          }
+          correctAudio.play();
           scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
           moveCursorNext(replyObj);
           signaturePads.forEach(pad => { pad.clear() });
@@ -268,6 +246,7 @@ function getAccuracyScores(imageData) {
   return score;
 }
 
+const kakusus = [1, 1, 1, 1, 2, 2, 1, 2, 1, 1];  // japanese style
 function predict(canvas, kaku, count) {
   var canvases = document.getElementById('canvases').getElementsByTagName('canvas');
   var predicts = new Array(2).fill('');
@@ -278,7 +257,9 @@ function predict(canvas, kaku, count) {
   var data = imageData.data;
   var accuracyScores = getAccuracyScores(imageData);
   var klass = accuracyScores.indexOf(Math.max.apply(null, accuracyScores));
-  if (klass != 1 && count < 10) {
+  if (klass != 1 && count < 15) {
+    klass = '';
+  } else if (kaku < kakusus[klass]) {  // 画数が足りないものは不正解とする
     klass = '';
   }
   canvas.dataset.predict = klass;
@@ -309,11 +290,18 @@ initMasu();
 window.onresize = function() {
   initMasu();
 };
+const correctAudio = new Audio('mp3/correct3.mp3');
+correctAudio.volume = 0;
+window.onclick = function() {
+  correctAudio.play();
+  correctAudio.pause();
+  correctAudio.volume = 1;
+  window.onclick = void(0);
+}
 
 let model;
 (async() => {
   initSignaturePad();
-  // model = await tf.loadLayersModel('/tegaki-de-anzan/model/model.json');
   model = await tf.loadLayersModel('model/model.json');
 })();
 
