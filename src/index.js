@@ -202,12 +202,18 @@ function initSignaturePad() {
       }
     };
     signaturePads.push(signaturePad);
-    var canvas = canvases[i];
-    var eraser = canvases[i].nextElementSibling;
-    eraser.onclick = function() {
-      signaturePad.clear();
-      canvas.dataset.predict = '';
-    };
+    (function(canvas) {
+      var eraser = canvases[i].nextElementSibling;
+      eraser.onclick = function() {
+        canvas.dataset.predict = '';
+        var reply = new Array(2).fill('');
+        for (var j=0; j<canvases.length; j++) {
+          reply[j] = canvases[j].dataset.predict;
+        }
+        var replyObj = document.getElementById('table').querySelector('td.table-danger');
+        replyObj.innerText = reply.join('');
+      };
+    })(canvases[i]);
   }
 }
 
