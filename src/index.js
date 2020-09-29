@@ -2,6 +2,11 @@ function loadConfig() {
   if (localStorage.getItem('darkMode') == 1) {
     document.documentElement.dataset.theme = 'dark';
   }
+  if (localStorage.getItem('bgm') == 1) {
+    var bgmButton = document.getElementById('bgmButton');
+    bgmButton.classList.remove('close');
+    bgmButton.dataset.enabled = 'true';
+  }
 }
 loadConfig();
 
@@ -12,6 +17,21 @@ function toggleDarkMode() {
   } else {
     localStorage.setItem('darkMode', 1);
     document.documentElement.dataset.theme = 'dark';
+  }
+}
+
+function toggleBGM(obj) {
+  const bgm = new Audio('mp3/correct3.mp3');
+  if (obj.dataset && obj.dataset.enabled == 'true') {
+    obj.classList.add('close');
+    obj.dataset.enabled = 'false';
+    localStorage.setItem('bgm', 0);
+    bgm.pause();
+  } else {
+    obj.classList.remove('close');
+    obj.dataset.enabled = 'true';
+    localStorage.setItem('bgm', 1);
+    bgm.play();
   }
 }
 
@@ -193,7 +213,9 @@ function initSignaturePad() {
         var reply = predict(this._canvas, data.length).join('');
         replyObj.innerText = reply;
         if (replyObj.dataset.answer == reply) {
-          new Audio('mp3/correct3.mp3').play();
+          if (localStorage.getItem('bgm') == 1) {
+            new Audio('mp3/correct3.mp3').play();
+          }
           scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
           moveCursorNext(replyObj);
           signaturePads.forEach(pad => { pad.clear() });
