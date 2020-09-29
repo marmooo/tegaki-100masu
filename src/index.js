@@ -227,6 +227,7 @@ function initSignaturePad() {
     (function(canvas) {
       var eraser = canvas.nextElementSibling;
       eraser.onclick = function() {
+        signaturePad.clear();
         canvas.dataset.predict = '';
         var reply = new Array(2).fill('');
         for (var j=0; j<canvases.length; j++) {
