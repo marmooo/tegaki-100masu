@@ -181,6 +181,7 @@ function initSignaturePad() {
       maxWidth: 5,
       penColor: 'black',
       backgroundColor: 'white',
+      throttle: 0,
     });
     signaturePad.onEnd = function() {
       var replyObj = document.getElementById('table').querySelector('td.table-danger');
