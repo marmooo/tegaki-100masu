@@ -195,10 +195,18 @@ function initSignaturePad() {
         replyObj.innerText = reply;
         if (replyObj.dataset.answer == reply) {
           correctAudio.play();
-          scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
+          var score = parseInt(scoreObj.innerText) + 1;
+          scoreObj.innerText = score;
           moveCursorNext(replyObj);
           signaturePads.forEach(pad => { pad.clear() });
           canvases.forEach(canvas => { canvas.dataset.predict = ''; });
+          if (score == 100) {
+            clearInterval(gameTimer);
+            playPanel.classList.add('d-none');
+            scorePanel.classList.remove('d-none');
+            var t = document.getElementById('time').innerText;
+            scoreObj.innerText = (Date.now() - startTime) / 1000;
+          }
         }
       }
     };
