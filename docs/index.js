@@ -29,4 +29,4 @@ canvas.dataset.predict=klass;predicts[parseInt(canvas.getAttribute('id').slice(-
 td.ontouchstart=function(){moveCursor(this);}});document.getElementById('type').onchange=function(){var text=this.options[this.selectedIndex].innerText;document.getElementById('typeText').innerHTML=text;initTable();}
 document.getElementById('grade').onchange=function(){initTable();}
 initTable();initMasu();window.onresize=function(){initMasu();};const correctAudio=new Audio('mp3/correct3.mp3');correctAudio.volume=0;window.onclick=function(){correctAudio.play();correctAudio.pause();correctAudio.volume=1;window.onclick=void(0);}
-let model;(async()=>{initSignaturePad();model=await tf.loadLayersModel('model/model.json');})();
+let model;(async()=>{initSignaturePad();model=await tf.loadLayersModel('model/model.json');})();document.body.addEventListener("touchstart",function(e){if(e.touches&&e.touches.length>1){e.preventDefault();}},{passive:false});document.body.addEventListener("touchmove",function(e){if(e.touches&&e.touches.length>1){e.preventDefault();}},{passive:false});
