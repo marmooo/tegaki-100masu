@@ -1,4 +1,4 @@
-var CACHE_NAME = '2020-11-05 22:30';
+var CACHE_NAME = '2020-11-05 22:50';
 var urlsToCache = [
   '/tegaki-100masu/',
   '/tegaki-100masu/index.js',
