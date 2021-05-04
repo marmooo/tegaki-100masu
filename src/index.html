@@ -63,7 +63,8 @@
       @media (orientation: portrait) {
         #masu { width:100%; }
       }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg) brightness(1.5); }
+      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
+      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
     </style>
   </head>
   <body>
