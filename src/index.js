@@ -288,7 +288,7 @@ function predict(canvas, kaku, count) {
 });
 document.getElementById('courseOption').onchange = function() {
   var text = this.options[this.selectedIndex].innerText;
-  document.getElementById('typeText').innerHTML = text;
+  document.getElementById('courseText').innerHTML = text;
   initTable();
 }
 document.getElementById('gradeOption').onchange = function() {
