@@ -355,6 +355,7 @@ let model;
 (async() => {
   initSignaturePad();
   model = await tf.loadLayersModel('model/model.json');
+  predict(signaturePads[0]._canvas, 0, 0);
 })();
 
 // https://webinlet.com/2020/ios11以降でピンチインアウト拡大縮小禁止
