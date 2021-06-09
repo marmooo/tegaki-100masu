@@ -369,4 +369,5 @@ document.body.addEventListener("touchmove", function(e) {
     e.preventDefault();
   }
 }, { passive:false });
+document.addEventListener('click', unlockAudio, { once:true, useCapture:true });
 
