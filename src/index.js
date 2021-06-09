@@ -1,3 +1,9 @@
+let endAudio, correctAudio;
+loadAudios();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioContext = new AudioContext();
+
+
 function loadConfig() {
   if (localStorage.getItem('darkMode') == 1) {
     document.documentElement.dataset.theme = 'dark';
@@ -13,6 +19,50 @@ function toggleDarkMode() {
     localStorage.setItem('darkMode', 1);
     document.documentElement.dataset.theme = 'dark';
   }
+}
+
+function playAudio(audioBuffer, volume) {
+  const audioSource = audioContext.createBufferSource();
+  audioSource.buffer = audioBuffer;
+  if (volume) {
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = volume;
+    gainNode.connect(audioContext.destination);
+    audioSource.connect(gainNode);
+    audioSource.start();
+  } else {
+    audioSource.connect(audioContext.destination);
+    audioSource.start();
+  }
+}
+
+function unlockAudio() {
+  audioContext.resume();
+}
+
+function loadAudio(url) {
+  return fetch(url)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => {
+      return new Promise((resolve, reject) => {
+        audioContext.decodeAudioData(arrayBuffer, (audioBuffer) => {
+          resolve(audioBuffer);
+        }, (err) => {
+          reject(err);
+        });
+      });
+    });
+}
+
+function loadAudios() {
+  promises = [
+    loadAudio('mp3/end.mp3'),
+    loadAudio('mp3/correct3.mp3'),
+  ];
+  Promise.all(promises).then(audioBuffers => {
+    endAudio = audioBuffers[0];
+    correctAudio = audioBuffers[1];
+  });
 }
 
 // +-*/のテストデータ生成範囲を返却
@@ -194,13 +244,14 @@ function initSignaturePad() {
         var reply = predict(this._canvas, data.length, count).join('');
         replyObj.innerText = reply;
         if (replyObj.dataset.answer == reply) {
-          correctAudio.play();
+          playAudio(correctAudio);
           var score = parseInt(scoreObj.innerText) + 1;
           scoreObj.innerText = score;
           moveCursorNext(replyObj);
           signaturePads.forEach(pad => { pad.clear() });
           canvases.forEach(canvas => { canvas.dataset.predict = ''; });
           if (score == 100) {
+            playAudio(endAudio);
             clearInterval(gameTimer);
             playPanel.classList.add('d-none');
             scorePanel.classList.remove('d-none');
@@ -299,14 +350,6 @@ initMasu();
 window.onresize = function() {
   initMasu();
 };
-const correctAudio = new Audio('mp3/correct3.mp3');
-correctAudio.volume = 0;
-window.onclick = function() {
-  correctAudio.play();
-  correctAudio.pause();
-  correctAudio.volume = 1;
-  window.onclick = void(0);
-}
 
 let model;
 (async() => {
