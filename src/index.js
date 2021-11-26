@@ -5,7 +5,7 @@ const canvases = [
     "canvas",
   ),
 ];
-const signaturePads = initSignaturePads(canvases);
+const pads = initSignaturePads(canvases);
 let endAudio, correctAudio;
 loadAudios();
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -241,15 +241,15 @@ function initSignaturePads(canvases) {
   const pads = [];
   for (let i = 0; i < canvases.length; i++) {
     const canvas = canvases[i];
-    const signaturePad = new SignaturePad(canvas, {
+    const pad = new SignaturePad(canvas, {
       minWidth: 5,
       maxWidth: 5,
       penColor: "black",
       backgroundColor: "white",
       throttle: 0,
     });
-    signaturePad.onEnd = function () {
-      const data = signaturePad.toData();
+    pad.addEventListener("endStroke", function() {
+      const data = pad.toData();
       let count = 0;
       for (let i = 0; i < data.length; i++) {
         count += data[i].points.length;
@@ -258,10 +258,10 @@ function initSignaturePads(canvases) {
         const pos = canvases.indexOf(this.canvas);
         predict(this.canvas, pos, data.length, count);
       }
-    };
+    });
     const eraser = canvas.nextElementSibling;
-    eraser.onclick = function () {
-      signaturePad.clear();
+    eraser.onclick = () => {
+      pad.clear();
       canvas.dataset.predict = "";
       const reply = new Array(2).fill("");
       for (let j = 0; j < canvases.length; j++) {
@@ -272,7 +272,7 @@ function initSignaturePads(canvases) {
       );
       replyObj.textContent = reply.join("");
     };
-    pads.push(signaturePad);
+    pads.push(pad);
   }
   return pads;
 }
@@ -337,7 +337,7 @@ worker.addEventListener("message", function (e) {
     const score = parseInt(scoreObj.textContent) + 1;
     scoreObj.textContent = score;
     moveCursorNext(replyObj);
-    signaturePads.forEach((pad) => {
+    pads.forEach((pad) => {
       pad.clear();
     });
     canvases.forEach((canvas) => {
