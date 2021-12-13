@@ -248,7 +248,7 @@ function initSignaturePads(canvases) {
       backgroundColor: "white",
       throttle: 0,
     });
-    pad.addEventListener("endStroke", () => {
+    pad.onEnd = () => {
       const data = pad.toData();
       let count = 0;
       for (let i = 0; i < data.length; i++) {
@@ -258,7 +258,7 @@ function initSignaturePads(canvases) {
         const pos = canvases.indexOf(pad.canvas);
         predict(pad.canvas, pos, data.length, count);
       }
-    });
+    };
     const eraser = canvas.nextElementSibling;
     eraser.onclick = () => {
       pad.clear();
