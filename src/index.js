@@ -341,6 +341,8 @@ worker.addEventListener("message", function (e) {
       infoPanel.classList.add("d-none");
       scorePanel.classList.remove("d-none");
       scoreObj.textContent = (Date.now() - startTime) / 1000;
+    } else if (score == 1) {
+      startGameTimer();
     }
   }
 });
