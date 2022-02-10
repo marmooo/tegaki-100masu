@@ -229,14 +229,6 @@ function moveCursorNext(obj) {
   newObj.className = "table-danger";
 }
 
-function moveCursor(obj) {
-  const prevObj = document.getElementById("table").querySelector(
-    "td.table-danger",
-  );
-  prevObj.className = "";
-  obj.className = "table-danger";
-}
-
 function initSignaturePads(canvases) {
   const pads = [];
   for (let i = 0; i < canvases.length; i++) {
@@ -356,14 +348,6 @@ worker.addEventListener("message", function (e) {
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("startButton").onclick = countdown;
 document.getElementById("restartButton").onclick = countdown;
-[...document.getElementsByTagName("td")].forEach((td) => {
-  td.onmousedown = function () {
-    moveCursor(this);
-  };
-  td.ontouchstart = function () {
-    moveCursor(this);
-  };
-});
 document.getElementById("courseOption").onchange = function () {
   const text = this.options[this.selectedIndex].textContent;
   document.getElementById("courseText").innerHTML = text;
