@@ -1,10 +1,10 @@
-var CACHE_NAME = "2022-05-01 08:30";
+var CACHE_NAME = "2022-05-02 00:15";
 var urlsToCache = [
   "/tegaki-100masu/",
   "/tegaki-100masu/index.js",
+  "/tegaki-100masu/worker.js",
   "/tegaki-100masu/model/model.json",
   "/tegaki-100masu/model/group1-shard1of1.bin",
-  "/tegaki-100masu/worker.js",
   "/tegaki-100masu/mp3/incorrect1.mp3",
   "/tegaki-100masu/mp3/end.mp3",
   "/tegaki-100masu/mp3/correct3.mp3",
