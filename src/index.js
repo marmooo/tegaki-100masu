@@ -124,9 +124,10 @@ function countdown() {
   }, 1000);
 }
 
-function initMasu() {
-  const width = document.getElementById("table").offsetWidth;
-  document.getElementById("masu").style.fontSize = width / 11 * 0.6 + "px";
+function initTableFontSize() {
+  const table = document.getElementById("table")
+  const width = table.offsetWidth;
+  table.style.fontSize = width / 11 * 0.6 + "px";
 }
 
 function shuffle(array) {
@@ -309,7 +310,7 @@ function predict(canvas, pos, kaku, count) {
 }
 
 initTable();
-initMasu();
+initTableFontSize();
 
 const worker = new Worker("worker.js");
 worker.addEventListener("message", function (e) {
@@ -351,7 +352,7 @@ document.getElementById("courseOption").onchange = function () {
   initTable();
 };
 document.getElementById("gradeOption").onchange = initTable;
-window.onresize = initMasu;
+window.onresize = initTableFontSize;
 
 // https://webinlet.com/2020/ios11以降でピンチインアウト拡大縮小禁止
 // 手を置いた時の誤爆を防ぎつつスクロールは許可
