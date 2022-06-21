@@ -1,3 +1,4 @@
+const countPanel = document.getElementById("countPanel");
 const infoPanel = document.getElementById("infoPanel");
 const scorePanel = document.getElementById("scorePanel");
 const canvases = [
@@ -94,7 +95,7 @@ function startGameTimer() {
   clearInterval(gameTimer);
   const timeNode = document.getElementById("time");
   startTime = Date.now();
-  gameTimer = setInterval(function () {
+  gameTimer = setInterval(() => {
     timeNode.textContent = (Date.now() - startTime) / 1000;
   }, 200);
 }
@@ -103,12 +104,12 @@ let countdownTimer;
 function countdown() {
   initTable();
   clearTimeout(countdownTimer);
-  gameStart.classList.remove("d-none");
+  countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
   scorePanel.classList.add("d-none");
   const counter = document.getElementById("counter");
   counter.textContent = 3;
-  countdownTimer = setInterval(function () {
+  countdownTimer = setInterval(() => {
     const colors = ["skyblue", "greenyellow", "violet", "tomato"];
     if (parseInt(counter.textContent) > 1) {
       const t = parseInt(counter.textContent) - 1;
@@ -116,7 +117,7 @@ function countdown() {
       counter.textContent = t;
     } else {
       clearTimeout(countdownTimer);
-      gameStart.classList.add("d-none");
+      countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
       document.getElementById("score").textContent = 0;
       startGameTimer();
@@ -313,7 +314,7 @@ initTable();
 initTableFontSize();
 
 const worker = new Worker("worker.js");
-worker.addEventListener("message", function (e) {
+worker.addEventListener("message", (e) => {
   const reply = getReplies(e.data).join("");
   const replyObj = document.getElementById("table").querySelector(
     "td.table-danger",
@@ -346,26 +347,14 @@ worker.addEventListener("message", function (e) {
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("startButton").onclick = countdown;
 document.getElementById("restartButton").onclick = countdown;
-document.getElementById("courseOption").onchange = function () {
-  const text = this.options[this.selectedIndex].textContent;
+document.getElementById("courseOption").onchange = (event) => {
+  const obj = event.target;
+  const text = obj.options[obj.selectedIndex].textContent;
   document.getElementById("courseText").innerHTML = text;
   initTable();
 };
 document.getElementById("gradeOption").onchange = initTable;
 window.onresize = initTableFontSize;
-
-// https://webinlet.com/2020/ios11以降でピンチインアウト拡大縮小禁止
-// 手を置いた時の誤爆を防ぎつつスクロールは許可
-document.body.addEventListener("touchstart", function (e) {
-  if (e.touches && e.touches.length > 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
-document.body.addEventListener("touchmove", function (e) {
-  if (e.touches && e.touches.length > 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
 document.addEventListener("click", unlockAudio, {
   once: true,
   useCapture: true,

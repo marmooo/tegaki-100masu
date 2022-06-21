@@ -72,11 +72,11 @@
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/tegaki-100masu/">
             <img src="/tegaki-100masu/favicon/favicon.svg" width="32" height="32">
-            <ruby>手書<rp>(</rp><rt>てが</rt><rp>)</rp></ruby>き100マス<ruby>計算<rp>(</rp><rt>けいさん</rt><rp>)</rp></ruby>
+            手書き100マス計算
           </a>
           <div class="navbar-nav align-items-center">
             <button id="startButton" type="button" class="btn btn-primary">スタート</button>
-            <select id="courseOption" class="form-select form-select-sm w-auto ms-1" aria-label="コース">
+            <select id="courseOption" class="form-select form-select-sm w-auto ms-1 notranslate" aria-label="コース">
               <option>＋</option>
               <option>ー</option>
               <option>×</option>
@@ -98,42 +98,7 @@
       <noscript>
         <div class="alert alert-warning">JavaScript を ON にしてください</div>
       </noscript>
-      <div id="gameStart" class="text-center d-none">
-        <div id="countdown">
-          <div id="counter">3</div>
-          <pre class="aa">
-　　　　　　　　　　　　 ）ｿ）
-　　　　　　　　　　ｯλ　ﾉ（.,ﾉ)
-　　　　　　　　　（ﾞ-　..::.::.　.　（
-　　　　　　　 (ソ.　 .彡⌒ミ.　）ｿ)　　　パワー
-　　　　　　　　）.::'; (´･ω･`) 　 (　　　充電中...
-　　　　　　　ｿ　.::;';'（つ ⊂）::;';'`～､.
-　　　　　　　(　　:;';' |__∧_|　::;';' 　ヽ）
-`'~`'''`'`'`~'~~`~~'`'`''''"`'`'`''`''''"`'``'~`''`'~`'''`'`'`~
-          </pre>
-        </div>
-      </div>
-      <div id="scorePanel" class="text-center pb-3 d-none">
-        <h3 class="pt-3">
-          <ruby>結果<rp>(</rp><rt>けっか</rt><rp>)</rp></ruby>
-        </h3>
-        <pre class="aa">　　　　／￣|
-　　　　|　　｜
-　　　 ｜ 　｜.　彡⌒ ミ
-　 ,―　　　　＼(´・ω・｀)　クリアタイムは・・・
-　| ＿＿_） 　 ｜　　ノ
-　| ＿＿_） 　 ｜）＿フ
-　| ＿＿_） 　 ｜
-　ヽ＿＿）＿／</pre>
-        <div class="h2 pb-3">
-          <span id="time" class="d-none"></span>
-          <span id="score" class="h1">0</span>
-          <ruby>秒<rp>(</rp><rt>びょう</rt><rp>)</rp></ruby>！
-        </div>
-        <a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=手書き100マス計算で遊んだよ!&url=https%3a%2f%2fmarmooo.github.com/tegaki-100masu/%2f&hashtags=手書き100マス計算" class="btn btn-primary btn-lg m-1" role="button">Twitter でつぶやく</a>
-        <button id="restartButton" type="button" class="btn btn-primary btn-lg m-1">リスタート</button>
-      </div>
-      <div id="infoPanel" class="d-flex flex-wrap justify-content-center">
+      <div id="infoPanel" class="d-flex flex-wrap justify-content-center notranslate">
         <div id="masuWrapper">
           <div id="masu">
             <table id="table" class="table table-striped table-bordered text-center align-middle">
@@ -167,7 +132,7 @@
         </div>
       </div>
       <div class="pt-md-5 d-md-block d-none text-center">
-        <ruby>他<rp>(</rp><rt>ほか</rt><rp>)</rp></ruby>にもいろいろなゲームがあるよ！
+        他にもいろいろなゲームがあるよ！
         <div class="text-center d-flex flex-wrap justify-content-center pt-3">
           <div class="tile">
             <a href="https://marmooo.github.io/kana-sagashi/">
@@ -191,6 +156,39 @@
             </a>
           </div>
         </div>
+      </div>
+      <div id="gameStart" class="text-center d-none">
+        <div id="countdown">
+          <div id="counter">3</div>
+          <pre class="aa">
+　　　　　　　　　　　　 ）ｿ）
+　　　　　　　　　　ｯλ　ﾉ（.,ﾉ)
+　　　　　　　　　（ﾞ-　..::.::.　.　（
+　　　　　　　 (ソ.　 .彡⌒ミ.　）ｿ)　　　パワー
+　　　　　　　　）.::'; (´･ω･`) 　 (　　　充電中...
+　　　　　　　ｿ　.::;';'（つ ⊂）::;';'`～､.
+　　　　　　　(　　:;';' |__∧_|　::;';' 　ヽ）
+`'~`'''`'`'`~'~~`~~'`'`''''"`'`'`''`''''"`'``'~`''`'~`'''`'`'`~
+          </pre>
+        </div>
+      </div>
+      <div id="scorePanel" class="text-center pb-3 d-none">
+        <h3 class="pt-3">スコア</h3>
+        <pre class="aa">　　　　／￣|
+　　　　|　　｜
+　　　 ｜ 　｜.　彡⌒ ミ
+　 ,―　　　　＼(´・ω・｀)　クリアタイムは・・・
+　| ＿＿_） 　 ｜　　ノ
+　| ＿＿_） 　 ｜）＿フ
+　| ＿＿_） 　 ｜
+　ヽ＿＿）＿／</pre>
+        <div class="h2 pb-3 notranslate">
+          <span id="time" class="d-none"></span>
+          <span id="score" class="h1">0</span>
+          <span>sec!</span>
+        </div>
+        <a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=手書き100マス計算で遊んだよ!&url=https%3a%2f%2fmarmooo.github.com/tegaki-100masu/%2f&hashtags=手書き100マス計算" class="btn btn-primary btn-lg" role="button">Twitter でつぶやく</a>
+        <button id="restartButton" type="button" class="btn btn-primary btn-lg">リスタート</button>
       </div>
     </main>
     <footer class="pt-4 alert text-center">
