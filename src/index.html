@@ -54,12 +54,11 @@
         font-size:10rem; width:12rem; height:12rem; line-height:12rem; border-radius: 50%;
         background:tomato; margin:auto; }
       @media (orientation: landscape) {
-        #masuWrapper { max-width:calc(100% - 183px); max-height:calc(100vh - 78px); padding-right:1rem; }
+        #masu { max-width:calc(100% - 183px); max-height:calc(100vh - 84px); aspect-ratio:1/1; padding-right:1rem; }
       }
       @media (orientation: portrait) {
-        #masuWrapper { max-width:100%; max-height:calc(100vh - 274px); }
+        #masu { max-width:100%; max-height:calc(100vh - 276px); aspect-ratio:1/1; }
       }
-      #masu { max-width:100%; max-height:100%; aspect-ratio:1/1; }
       #table { height:100%; table-layout:fixed; }
       #table td, #table th { padding:0; }
       html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
@@ -76,11 +75,11 @@
           </a>
           <div class="navbar-nav align-items-center">
             <button id="startButton" type="button" class="btn btn-primary">スタート</button>
-            <select title="コース" id="courseOption" class="form-select form-select-sm w-auto ms-1 notranslate">
-              <option>＋</option>
-              <option>ー</option>
-              <option>×</option>
-              <option>÷</option>
+            <select title="コース" id="courseOption" class="form-select form-select-sm w-auto ms-1">
+              <option class="notranslate">＋</option>
+              <option class="notranslate">ー</option>
+              <option class="notranslate">×</option>
+              <option class="notranslate">÷</option>
             </select>
             <select title="学年" id="gradeOption" class="form-select form-select-sm w-auto ms-1">
               <option>小1</option>
@@ -99,24 +98,22 @@
         <div class="alert alert-warning">JavaScript を ON にしてください</div>
       </noscript>
       <div id="infoPanel" class="d-flex flex-wrap justify-content-center notranslate">
-        <div id="masuWrapper">
-          <div id="masu">
-            <table id="table" class="table table-striped table-bordered text-center align-middle">
-              <tbody>
-                <tr><th id="courseText">＋</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>0</th></tr>
-                <tr><th>1</th><td class="table-danger"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>2</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>3</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>5</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>6</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>7</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div id="masu">
+          <table id="table" class="table table-striped table-bordered text-center align-middle">
+            <tbody>
+              <tr><th id="courseText">＋</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>0</th></tr>
+              <tr><th>1</th><td class="table-danger"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>2</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>3</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>5</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>6</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>7</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
         </div>
         <div id="canvases" class="d-flex justify-content-center align-items-center">
           <div class="d-flex">
@@ -131,7 +128,7 @@
           </div>
         </div>
       </div>
-      <div id="countPanel" class="text-center d-none">
+      <div id="countPanel" class="text-center d-none notranslate">
         <div id="countdown">
           <div id="counter">3</div>
           <pre class="aa">
