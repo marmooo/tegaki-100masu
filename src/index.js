@@ -6,6 +6,8 @@ const canvases = [
     "canvas",
   ),
 ];
+const canvasCache = document.createElement("canvas")
+  .getContext("2d", { willReadFrequently: true });
 const pads = initSignaturePads(canvases);
 let endAudio, correctAudio;
 loadAudios();
@@ -266,7 +268,6 @@ function initSignaturePads(canvases) {
   return pads;
 }
 
-const canvasCache = document.createElement("canvas").getContext("2d");
 function getImageData(drawElement) {
   const inputWidth = inputHeight = 28;
   // resize
