@@ -244,9 +244,8 @@ function initSignaturePads(canvases) {
       for (let j = 0; j < canvases.length; j++) {
         reply[j] = canvases[j].dataset.predict;
       }
-      const replyObj = document.getElementById("table").querySelector(
-        "td.table-danger",
-      );
+      const replyObj = document.getElementById("table")
+        .querySelector("td.table-danger");
       replyObj.textContent = reply.join("");
     };
     pads.push(pad);
