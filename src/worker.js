@@ -16,15 +16,17 @@ function predict(imageData) {
   return klass;
 }
 
+async function loadModel() {
+  model = await tf.loadGraphModel("model/model.json");
+}
+
 importScripts("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.4.0/dist/tf.min.js");
 
 let model;
-(async () => {
-  model = await tf.loadGraphModel("model/model.json");
-})();
+loadModel();
 
-self.addEventListener("message", (e) => {
-  e.data.klass = predict(e.data.imageData);
-  delete e.data.imageData;
-  postMessage(e.data);
+self.addEventListener("message", (event) => {
+  event.data.klass = predict(event.data.imageData);
+  delete event.data.imageData;
+  postMessage(event.data);
 });
