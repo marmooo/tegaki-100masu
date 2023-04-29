@@ -3,10 +3,12 @@ const infoPanel = document.getElementById("infoPanel");
 const scorePanel = document.getElementById("scorePanel");
 const canvases = [
   ...document.getElementById("canvases")
-  .getElementsByTagName("canvas"),
+    .getElementsByTagName("canvas"),
 ];
-const canvasCache = document.createElement("canvas")
-  .getContext("2d", { willReadFrequently: true });
+const canvasCache = document.createElement("canvas").getContext("2d", {
+  alpha: false,
+  willReadFrequently: true,
+});
 const pads = initSignaturePads(canvases);
 const audioContext = new AudioContext();
 const audioBufferCache = {};
@@ -112,7 +114,7 @@ function countdown() {
 }
 
 function initTableFontSize() {
-  const table = document.getElementById("table")
+  const table = document.getElementById("table");
   const width = table.offsetWidth;
   table.style.fontSize = width / 11 * 0.6 + "px";
 }
