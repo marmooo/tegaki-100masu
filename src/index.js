@@ -2,9 +2,8 @@ const countPanel = document.getElementById("countPanel");
 const infoPanel = document.getElementById("infoPanel");
 const scorePanel = document.getElementById("scorePanel");
 const canvases = [
-  ...document.getElementById("canvases").getElementsByTagName(
-    "canvas",
-  ),
+  ...document.getElementById("canvases")
+  .getElementsByTagName("canvas"),
 ];
 const canvasCache = document.createElement("canvas")
   .getContext("2d", { willReadFrequently: true });
@@ -296,8 +295,8 @@ function getReplies(predicted) {
     predicted.klass = "";
   }
   canvas.dataset.predict = predicted.klass;
-  predicts[parseInt(canvas.getAttribute("id").slice(-1))] = predicted.klass
-    .toString();
+  const pos = parseInt(canvas.getAttribute("id").slice(-1));
+  predicts[pos] = predicted.klass.toString();
   return predicts;
 }
 
@@ -317,9 +316,8 @@ initTableFontSize();
 const worker = new Worker("worker.js");
 worker.addEventListener("message", (e) => {
   const reply = getReplies(e.data).join("");
-  const replyObj = document.getElementById("table").querySelector(
-    "td.table-danger",
-  );
+  const replyObj = document.getElementById("table")
+    .querySelector("td.table-danger");
   replyObj.textContent = reply;
   if (replyObj.dataset.answer == reply) {
     playAudio(correctAudio);
