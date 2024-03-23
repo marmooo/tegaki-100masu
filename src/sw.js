@@ -1,4 +1,4 @@
-const CACHE_NAME = "2024-03-20 10:00";
+const CACHE_NAME = "2024-03-24 09:00";
 const urlsToCache = [
   "/tegaki-100masu/",
   "/tegaki-100masu/index.js",
@@ -10,7 +10,6 @@ const urlsToCache = [
   "/tegaki-100masu/mp3/correct3.mp3",
   "/tegaki-100masu/favicon/favicon.svg",
   "https://marmooo.github.io/fonts/textar-light.woff2",
-  "https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js",
   "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0/dist/tf.min.js",
 ];
 
