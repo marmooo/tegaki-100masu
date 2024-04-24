@@ -55,14 +55,11 @@
         #masu { max-width:calc(100% - 183px); max-height:calc(100vh - 84px); aspect-ratio:1/1; padding-right:1rem; }
       }
       @media (orientation: portrait) {
-        #canvasContainer { width:100%; padding-top: 1rem; }
         #masu { max-width:100%; max-height:calc(100vh - 276px); aspect-ratio:1/1; }
       }
-      #canvasContainer { user-select:none; -webkit-user-select:none; }
       #table { height:100%; table-layout:fixed; }
       #table td, #table th { padding:0; }
       canvas { outline:1px solid #000; }
-      .eraser { touch-action:none; }
       html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
       html[data-bs-theme="dark"] canvas { filter: invert(1) hue-rotate(180deg); }
       html[data-bs-theme="dark"] .table-danger { filter: invert(0.9) hue-rotate(180deg); border-color:var(--bs-gray-700); }
@@ -118,8 +115,8 @@
             </tbody>
           </table>
         </div>
-        <div id="canvasContainer" class="d-flex justify-content-center align-items-center">
-          <div class="d-flex">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="user-select-none p-2 d-flex">
             <div class="col p-0 text-center">
               <canvas id="canvas0" width="90" height="120" class="d-block"></canvas>
               <button title="書き直し" class="eraser btn p-0" type="button">
