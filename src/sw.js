@@ -1,4 +1,4 @@
-const CACHE_NAME = "2024-04-30 09:40";
+const CACHE_NAME = "2024-05-11 16:18";
 const urlsToCache = [
   "/tegaki-100masu/",
   "/tegaki-100masu/index.js",
@@ -10,7 +10,7 @@ const urlsToCache = [
   "/tegaki-100masu/mp3/correct3.mp3",
   "/tegaki-100masu/favicon/favicon.svg",
   "https://marmooo.github.io/fonts/textar-light.woff2",
-  "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.18.0/dist/tf.min.js",
+  "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.19.0/dist/tf.min.js",
 ];
 
 self.addEventListener("install", (event) => {
